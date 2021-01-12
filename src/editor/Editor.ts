@@ -39,22 +39,27 @@ export class Editor {
     public set CropState(value: boolean) { this._cropState = value; }
     public get CropState(): boolean { return this._cropState; }
 
-    // 当前使用的块数(UI显示用)
-    public get BlockNum(): number { return 0; }
-
     // 设置场景颜色(TODO)
     public set SceneColor(value: string) { }
     // 设置地面颜色(TODO)
     public set GroundColor(value: string) { }
+
+    // 设定范围
+    public get Range(): number { return 21; }
+    public set Range(value: number) { }
+
+    // 是否为3D相机视角
+    public set Camera3DFlag(value: boolean) {}
 
     // 当前是否错误
     public get Error(): EditorError { return this._error; }
 
     // 构造函数()
     constructor(private canvasElement: string,
-        private onBlockChange?: (num: number) => void,
+        private onBlockChange?: (nums: Array<number>) => void,
         private onSelected?: (move: boolean, rotate: boolean) => void,
-        private onScreenShot?: (id: string, name: string, data: string) => void) {
+        private onScreenShot?: (id: string, name?: string, data?: string) => void,
+        private onUndoRedo?: (undo: boolean, redo: boolean) => void) {
         Editor._instance = this;
 
         var canva = document.getElementById(canvasElement) as HTMLCanvasElement;
@@ -62,7 +67,7 @@ export class Editor {
 
         // 当块数变更时会回调
         if (this.onBlockChange)
-            this.onBlockChange(this.BlockNum);
+            this.onBlockChange([1,2,3,4,5,6,7,8]);
 
         // 当选择变更时会回调(当选择的是模型时可旋转，当选择的是块时不能旋转)
         if (this.onSelected)
@@ -83,7 +88,7 @@ export class Editor {
     public async initialize(): Promise<void> { await this.initializeScene(); }
 
     // (关闭编辑器时)释放资源
-    public dispose() { }
+    public Dispose() { }
 
     // (UI界面调用)开始弹出截图界面，当前有错时，不能裁切
     public ClickCrop(): boolean {
@@ -116,6 +121,12 @@ export class Editor {
 
     // (UI界面调用)镜头复位
     public ResetCamera() { }
+
+    // (UI界面操作)倒退
+    public Undo() { }
+
+    // (UI界面操作)前进
+    public Redo() { }
 
     // (UI界面调用)引入参考模型()
     public ImportRefModel(id: string, data: string /* ref ModelData */) {
