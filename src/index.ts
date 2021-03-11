@@ -157,6 +157,14 @@ window.addEventListener("DOMContentLoaded", () => {
                 var pdata = "1,1,4,B1CD";
                 Editor.Instance.Preview(id, name, pdata);
             }
+
+            if (evt.key === "m") { // 倒退
+                Editor.Instance.Undo();
+            }
+
+            if (evt.key === "n") { // 重放
+                Editor.Instance.Redo();
+            }
         });
 
         // scene started rendering, everything is initialized
