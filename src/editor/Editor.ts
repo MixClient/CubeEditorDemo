@@ -135,10 +135,10 @@ export class Editor {
     }
 
     // (UI界面调用)当存在本地缓存时打开图纸编辑
-    public LoadFromCache(id: string, data: EditorData, models?: Map<string, string>): boolean { return true; }
+    public LoadFromCache(id: string, name: Nullable<string> , data: EditorData, models?: Map<string, string>): boolean { return true; }
 
     // (UI界面调用)打开图纸编辑
-    public Load(id: string, data?: string /* ref EditorData */, models?: Map<string, string>) { this._id = id; }
+    public Load(id: string, name: Nullable<string>, data?: string /* ref EditorData */, models?: Map<string, string>) { this._id = id; }
 
     // 保存图纸时及上链时保存获得数据
     public GetData(flag: boolean = false): Nullable<EditorData> { return null }

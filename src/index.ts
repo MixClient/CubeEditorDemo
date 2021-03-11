@@ -21,6 +21,10 @@ export const editorInit = async (): Promise<void> => {
             console.log("截图：" + id + " " + name + " 完成");
         else
             console.log("截图：" + id + " 放弃");
+    }, (undo, redo) => {
+        // 当前undo是否可用(到最头)
+        // 当前redo是否可用(游标指到最尾端)
+        console.log("undo:" + undo + " redo:" + redo);
     });
 
     await editor.initialize();
@@ -77,7 +81,8 @@ window.addEventListener("DOMContentLoaded", () => {
             if (evt.key === "l") {
                 // 是否有缓存，异常关闭时会有缓存，用户主动保存后，会删除缓存
                 var cached = Editor.Instance.GetCached("1");
-
+                var id = "1";
+                var name = id + "_45_45_50_262626_303030";
                 // 有缓存从缓存装载
                 if (cached != null) {
                     // cached.Refs
@@ -86,7 +91,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     //refModels.set("1", "1,1,1,A");
                     //refModels.set("2", "1,1,2,A1");
 
-                    var flag = Editor.Instance.LoadFromCache("1", cached, refModels);
+                    var flag = Editor.Instance.LoadFromCache(id, name, cached, refModels);
                     console.log(flag);
                 } else {
                     // 没有缓存，则取引用模型的数据后，装载
@@ -97,7 +102,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     // 有数据表示编辑，没有数据相当于新建
                     //var str = "1,1,2,A1";
                     var str = "";
-                    Editor.Instance.Load("1", str, refModels);
+                    Editor.Instance.Load(id, name, str, refModels);
                 }
             }
 
