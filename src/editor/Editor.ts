@@ -59,7 +59,8 @@ export class Editor {
         private onBlockChange?: (nums: Array<number>) => void,
         private onSelected?: (move: boolean, rotate: boolean) => void,
         private onScreenShot?: (id: string, name?: string, data?: string) => void,
-        private onUndoRedo?: (undo: boolean, redo: boolean) => void) {
+        private onUndoRedo?: (undo: boolean, redo: boolean) => void,
+        private onModelChange?: (nums: Map<string, number>) => void) {
         Editor._instance = this;
 
         var canva = document.getElementById(canvasElement) as HTMLCanvasElement;

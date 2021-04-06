@@ -25,6 +25,11 @@ export const editorInit = async (): Promise<void> => {
         // 当前undo是否可用(到最头)
         // 当前redo是否可用(游标指到最尾端)
         console.log("undo:" + undo + " redo:" + redo);
+    }, (nums) => {
+        // 界面更新模块引用
+        nums.forEach((num, id) => {
+            console.log("模块:" + id + " " + num);
+        });
     });
 
     await editor.initialize();
