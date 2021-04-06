@@ -152,7 +152,8 @@ window.addEventListener("DOMContentLoaded", () => {
                 // demo 从服务器取得模型1的数据然后导出
                 var id = "1";
                 var qdata = "1,1,4,B1CD";
-                Editor.Instance.ImportRefModel(id, qdata);
+                var num = 1;
+                Editor.Instance.ImportRefModel(id, qdata, num);
             }
 
             if (evt.key === "p") { // 预览数据(不能编辑)

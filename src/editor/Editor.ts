@@ -130,7 +130,7 @@ export class Editor {
     public Redo() { }
 
     // (UI界面调用)引入参考模型()
-    public ImportRefModel(id: string, data: string /* ref ModelData */) {
+    public ImportRefModel(id: string, data: string /* ref ModelData */, num: number = 1) {
         // 模拟编辑过了
         localStorage.setItem(`${this._id}.qumeta`, "data");
     }
